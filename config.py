@@ -52,9 +52,8 @@ pan_start_y = 20  # initial y start position
 
 pan_max_left = 0
 pan_max_right = 180
-pan_max_top = 30
-#pan_max_bottom = 70
-pan_max_bottom = 50
+pan_max_top = 170
+pan_max_bottom = -90
 pan_move_x = int(CAMERA_WIDTH / 8)  # Amount to pan left/right in search mode
 pan_move_y = int(CAMERA_HEIGHT / 5) # Amount to pan up/down in search mode
 

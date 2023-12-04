@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 progname = "face_track-gpiozero.py"
 ver = "ver 0.95"
+progVer = "0.95"
 
 """
 motion-track is written by Claude Pageau pageauc@gmail.com
@@ -78,7 +79,13 @@ from picamera.array import PiRGBArray
 from picamera import PiCamera
 from threading import Thread
 from gpiozero import AngularServo
+from gpiozero import Servo
 import pantilthat
+
+pan_pin = Servo(5)
+tilt_pin = Servo(13)
+pan_pin.min()
+pan_pin.max()
 
 pan_pin = GPIOZERO_PAN_PIN    # gpio pin for x AngularServo control below
 tilt_pin = GPIOZERO_TILT_PIN  # gpio pin for y AngularServo control below
@@ -101,8 +108,10 @@ if debug:
     print("Horiz pan_pin=%i  min_angle=%i max_angle=%i" % ( pan_pin, min_x, max_x ))
     print("Vert tilt_pin=%i  min_angle=%i max_angle=%i" % ( tilt_pin, min_y, max_y ))
 
-pan = AngularServo(pan_pin, min_angle=min_x, max_angle=max_x)
-tilt = AngularServo(tilt_pin, min_angle=min_y, max_angle=max_y)
+#pan = AngularServo(pan_pin, min_angle=min_x, max_angle=max_x)
+#tilt = AngularServo(tilt_pin, min_angle=min_y, max_angle=max_y)
+pan = AngularServo(pan_pin, min_angle=pan_max_left, max_angle=pan_max_right)
+tilt = AngularServo(tilt_pin, min_angle=pan_max_bottom, max_angle=pan_max_top)
 
 # Create Calculated Variables
 cam_cx = CAMERA_WIDTH / 2
